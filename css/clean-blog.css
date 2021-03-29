@@ -268,22 +268,22 @@ header.masthead .post-heading .meta a {
   }
 }
 
-.post-preview > a {
+.post-preview > form >  a {
   color: #212529;
 }
 
-.post-preview > a:focus, .post-preview > a:hover {
+.post-preview > form > a:focus, .post-preview > form > a:hover {
   text-decoration: none;
   color: #0085A1;
 }
 
-.post-preview > a > .post-title {
+.post-preview > form >  a > button > .post-title {
   font-size: 30px;
   margin-top: 30px;
   margin-bottom: 10px;
 }
 
-.post-preview > a > .post-subtitle {
+.post-preview > form > a > button > .post-subtitle {
   font-weight: 300;
   margin: 0 0 10px;
 }
@@ -306,7 +306,7 @@ header.masthead .post-heading .meta a {
 }
 
 @media only screen and (min-width: 768px) {
-  .post-preview > a > .post-title {
+  .post-preview > form > a > button > .post-title {
     font-size: 36px;
   }
 }

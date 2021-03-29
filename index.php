@@ -30,9 +30,16 @@
   <link href="css/clean-blog.min.css" rel="stylesheet">
 
   <style type="text/css">
-    .swiper-button-next, .swiper-button-prev{
-      
-    }
+    
+
+.post-preview > form > a > button > .post-subtitle {
+  font-weight: 300;
+  margin: 0 0 10px;
+}
+.post-title:hover{
+  color:#0085a1;
+}
+
   </style>
 </head>
 
@@ -88,7 +95,7 @@
       </div>
     </div>
   </header>
-
+<hr>
     <!-- Swiper -->
   <div class="swiper-container">
     <div class="swiper-wrapper">
@@ -102,7 +109,16 @@
         {
     
           ?>
-      <div class="swiper-slide"><?php echo $row['name']; ?></div>
+       
+    
+      <div class="swiper-slide" > 
+   <form action="index.php" method="GET">
+        <button style="background: none;padding: 20px" value="<?php echo $row['name']; ?>" type="submit" name="Category"><?php echo $row['name']; ?>
+        <input type="hidden" name="idCat" value="<?php echo $row['ID']; ?>">
+    </button>
+       </form>
+    </div>
+
        <?php
         }
       }else {
@@ -117,34 +133,56 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
-
+<hr><br>
   <!-- Main Content -->
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
 
         <?php
-         $query = "SELECT * FROM post ORDER BY ID DESC";
-    $query_run = mysqli_query($connection,$query);
+       if(isset($_GET['Category'])){
+            $IDCat=$_GET['idCat'];
+            $query = "SELECT * FROM post  WHERE categoryID = '$IDCat'  ORDER BY ID DESC";
+        }else{
+          $query = "SELECT * FROM post ORDER BY ID DESC";
+        }
 
-       if(mysqli_num_rows($query_run)>0)
-      {
-        while($row = mysqli_fetch_assoc($query_run))
-        {
+         
+      $query_run = mysqli_query($connection,$query);
+
+       if(mysqli_num_rows($query_run)>0) {
+        while($row = mysqli_fetch_assoc($query_run)){
     
           ?>
         <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
+
+        <form action="post.php" method="GET">
+         <a href="#">
+          <button type="submit" name="Post" style="text-align: start;border: none; outline: none;">
+             <h2 class="post-title">
               <?php echo $row['title']; ?>
-            </h2>
+             </h2>
             <h3 class="post-subtitle">
              <?php echo $row['subtitle']; ?>
-            </h3>
+            </h3>      
+             <input type="hidden" name="idPost" value="<?php echo $row['ID']; ?>">
+          </button>
           </a>
+     
+         </form>
           <p class="post-meta">Posted by
-            <a href="#"><?php echo $row['auteurID']; ?></a>
-            on<?php echo $row['publishedat']; ?></p>
+            <a href="#">
+
+              <?php 
+              $IDAdmin = $row['auteurID'];
+              $querryAdmin = "SELECT first_name,last_name from admin WHERE ID = '$IDAdmin' ";
+              $query_runAdmin = mysqli_query($connection,$querryAdmin);
+                 $Admin = mysqli_fetch_array($query_runAdmin);
+              echo $Admin['first_name'].' '.$Admin['last_name']; ?>
+              
+
+            </a>
+            on <?php echo $row['publishedat']; ?></p>
         </div>
         <hr>
  <?php

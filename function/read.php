@@ -14,14 +14,14 @@
             <td  role="cell"><?php echo $row['publishedat']; ?></td>
             <td  role="cell"><?php echo $row['categoryID']; ?></td>
             <td  role="cell">
-              <form action="../Admin/updateBook.php" method="post" >
+              <form action="" method="post" >
                 <input type="hidden" name="edit_id" value="<?php echo $row['ID']; ?>">
            <button type="submit"  name="edit_Book" class="btn btn-warning edit_Book" > Update</button>
             
               </form>
       
               
-                   <form action="../Admin/deleteBook.php" method="post"  >
+                   <form action="" method="post"  >
                      <input type="hidden" name="delete_id" value="<?php echo $row['ID']; ?>">
             
            <button type="submit" name="delete_btn" class="btn btn-danger delete_btn" > Delete</button>

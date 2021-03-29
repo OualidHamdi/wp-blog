@@ -175,10 +175,11 @@ th{
 
  <div class="container">
            
-                <form class="form-inline mb-3" action="addbook.php" method="POST">
+                <form class="form-inline mb-3" action="" method="POST">
                     <div class="ilinetext">
-            <h5 class="title">LIST OF BOOKS :</h5>
-                    <button type="submit" class="bntStyle">Add Book</button>
+            <h5 class="title">Control panel</h5>
+                    <button type="submit" class="bntStyle">Add Category</button>
+                    <button type="submit" class="bntStyle">Add Post</button>
 
                     </div>
               </form>
